@@ -21,7 +21,7 @@ services:
   # fake-backend
   battle-vumay:
     hostname: "battle-vumay"
-    image: "vumay/fake-backend:1.0"
+    image: "vumay/fake-backend:jenkinsCI"
     container_name: "battle-vumay"
     environment:
       DATABASE_HOST: "db-vumay"
