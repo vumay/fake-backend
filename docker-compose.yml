@@ -23,8 +23,6 @@ services:
     hostname: "battle-vumay"
     image: "vumay/fake-backend:1.0"
     container_name: "battle-vumay"
-    volumes:
-      - ./battleboat/:/etc/backend/static
     environment:
       DATABASE_HOST: "db-vumay"
       DATABASE_PORT: "3306"
@@ -38,6 +36,8 @@ services:
     restart: always
     depends_on:
       - "db-vumay"
+    volumes:
+      - ./battleboat/:/etc/backend/static
 
 networks:
   battleboat:
