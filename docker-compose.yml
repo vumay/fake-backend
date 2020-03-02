@@ -37,7 +37,7 @@ services:
     depends_on:
       - "db-vumay"
     volumes:
-      - ./battleboat/:/etc/backend/static
+      -  /opt/bitnami/jenkins/jenkins_home/workspace/fake-backend/battleboat/:/etc/backend/static
 
 networks:
   battleboat:
