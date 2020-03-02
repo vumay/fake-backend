@@ -1,0 +1,47 @@
+version: "3.7"
+services:
+ # db 
+  db-vumay:
+    hostname: "db-vumay"
+    image: "mysql:5.7"
+    container_name: "db-vumay"
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "root-vumay"
+      MYSQL_DATABASE: "battleboat"
+      MYSQL_USER: "battleuser"
+      MYSQL_PASSWORD: "battlepass"
+    ports:
+      - "3306:3306"
+    networks:
+      - "battleboat"
+    restart: always
+
+  # fake-backend
+  battle-vumay:
+    hostname: "battle-vumay"
+    image: "vumay/fake-backend:1.0"
+    container_name: "battle-vumay"
+    volumes:
+      - ./battleboat/:/etc/backend/static
+    environment:
+      DATABASE_HOST: "db-vumay"
+      DATABASE_PORT: "3306"
+      DATABASE_USER: "battleuser"
+      DATABASE_PASSWORD: "battlepass"
+      DATABASE_NAME: "battleboat"
+    ports:
+      - "8181:3000"
+    networks:
+      - "battleboat"
+    restart: always
+    depends_on:
+      - "db-vumay"
+
+networks:
+  battleboat:
+    name: "battleboat"
+    
+volumes:
+  db-data:
