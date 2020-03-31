@@ -19,7 +19,7 @@ pipeline {
          stage('Check Gofile syntax') {
             agent { docker { image 'golangci/golangci-lint' } }
             steps {
-                sh 'golangci-lint run --disable-all -E errcheck \${WORKSPACE}/main.go'
+                sh 'golangci-lint run --disable-all -E errcheck \${WORKSPACE}/'
             }
         }
     }
