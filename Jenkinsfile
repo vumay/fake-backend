@@ -16,7 +16,7 @@ pipeline {
                 sh 'hadolint \${WORKSPACE}/Dockerfile'
             }
          }
-         stage('Check Dockerfile syntax') {
+         stage('Check Gofile syntax') {
             agent { docker { image 'hadolint/hadolint' } }
             steps {
                 sh 'hadolint \${WORKSPACE}/main.go'
