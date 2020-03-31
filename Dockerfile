@@ -9,9 +9,10 @@ RUN dep ensure -vendor-only
 COPY . ./
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
 
-# Final stage:
+# hadolint ignore=DL3006
 FROM alpine
 WORKDIR /root
+# hadolint ignore=DL3022
 COPY --from=0 /go/src/github.com/alexandrevilain/fake-backend/app .
 EXPOSE 3000
 CMD ["./app"] 
