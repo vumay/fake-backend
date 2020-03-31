@@ -17,7 +17,7 @@ pipeline {
             }
          }
          stage('Check Gofile syntax') {
-            agent { docker { image 'hadolint/hadolint' } }
+            agent { docker { image 'cytopia/golint' } }
             steps {
                 sh 'hadolint \${WORKSPACE}/main.go'
             }
