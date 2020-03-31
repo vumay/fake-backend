@@ -1,4 +1,6 @@
 # First stage:
+# hadolint ignore=DL3006
+# hadolint ignore=DL3022
 FROM golang:1.11
 RUN curl -fsSL -o /usr/local/bin/dep \
   https://github.com/golang/dep/releases/download/v0.5.0/dep-linux-amd64 \

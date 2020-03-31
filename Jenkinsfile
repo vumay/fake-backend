@@ -1,8 +1,5 @@
 /* import shared library */
 @Library('jenkins-shared-library')_
-ignored:
-  - DL3000
-  - DL3022
 
 pipeline {
     agent none
