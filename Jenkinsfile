@@ -16,11 +16,20 @@ pipeline {
                 sh 'hadolint \${WORKSPACE}/Dockerfile'
             }
          }
-         stage('Check Gofile syntax') {
-            agent { docker { image 'cytopia/golint' } }
+        /* stage('Check Gofile syntax') {
+            agent { docker { image 'golangcia/golangci-lint' } }
             steps {
-                sh 'cytopia/golint run \${WORKSPACE}/config.go'
+                sh 'golangci-lint run \${WORKSPACE}/config.go'
             }
-         }
+         }*/
       }
-   }
+      post {
+      always {
+         script {
+         /* Use slackNotifier.groovy from shared library and provide current build result as parameter */
+         clean
+         slackNotifier currentBuild.result
+     }
+    }
+    }
+}
