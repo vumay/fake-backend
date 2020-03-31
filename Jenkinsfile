@@ -4,7 +4,6 @@
 pipeline {
     agent none
     stages {
-        }
         stage('Check docker-compose syntax') {
             agent { docker { image 'docker/compose' } }
             steps {
