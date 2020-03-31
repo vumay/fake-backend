@@ -19,8 +19,8 @@ pipeline {
          stage('Check Gofile syntax') {
             agent { docker { image 'golangci/golangci-lint' } }
             steps {
-                sh 'golangci-lint run --disable-all -E errcheck /home/centos/fake-backend-ci/fake-backend/...'
-            }
+                sh 'golangci-lint run --disable-all -E errcheck /...\${WORKSPACE}'
+       
         }
     }
     post {
